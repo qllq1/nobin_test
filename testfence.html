@@ -6,21 +6,19 @@
 </head>
 <body>
   <script>
-    (async () => {
       if (window.fence) {
         window.fence.disableUntrustedNetwork().then(() => {
-            const url = new URL("https://webhook.site/a39336da-a963-4109-8cbe-575040541868/fence");
-            await fetch(url, { method: "GET" });
+            var url = new URL("https://webhook.site/a39336da-a963-4109-8cbe-575040541868/fence");
+            fetch(url, { method: "GET" });
         }).catch(error => {
-            const url = new URL("https://webhook.site/a39336da-a963-4109-8cbe-575040541868/Error-disabling");
-            await fetch(url, { method: "GET" });
+            var url = new URL("https://webhook.site/a39336da-a963-4109-8cbe-575040541868/Error-disabling");
+            fetch(url, { method: "GET" });
           console.error('Error disabling untrusted network:', error);
         });
       } else {
         console.error('Fence API is not available in this context.');
-            const url = new URL("https://webhook.site/a39336da-a963-4109-8cbe-575040541868/not-available");
-            await fetch(url, { method: "GET" });
-      }
+            var url = new URL("https://webhook.site/a39336da-a963-4109-8cbe-575040541868/not-available");
+            fetch(url, { method: "GET" });
 
       }
     })();
